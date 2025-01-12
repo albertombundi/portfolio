@@ -1,0 +1,938 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:wght@400;600;800;&display=swap");
+:root {
+    --primary-color:#ff4757;
+    --primary-04-color:#ff475766;
+    --white-color:#ffffff;
+    --pure-white:#ffffff;
+    --grey-color:#747d8c;
+    --light-color:#f1f2f6;
+    --dark-color:#2f3542;
+    --dark-04-color:#2f354266;
+
+    --csspercent:95;
+    --jspercent:90;
+    --vuepercent:85;
+    --reactpercent:80;
+    --flutterpercent:89;
+
+    --csscor: #00a0e4;
+    --jscor:#F7971E;
+    --reactcor:#61DBFB;
+    --vuecor:#cdcece;
+    --fluttercor:#54c5fb;
+
+}
+[data-theme="dark"] {
+    --white-color:#101216;
+    --grey-color:#747d8c;
+    --light-color:#202128;
+    --dark-color:#f2f3f6;
+    --dark-04-color:#f2f3f666;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+*,::before,::after {
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+    background-color: var(--white-color);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+strong {
+    font-weight: 800;
+}
+ul {
+    list-style-type: none;
+}
+h1, h2, h3, h4 {
+    font-weight: 800;
+    line-height: normal;
+}
+h1 {font-size: 2.5em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.5em;}
+h4 {font-size: 1em;}
+
+/*------------------------------
+ * HEADER
+ -----------------------------*/
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100vh;
+    background-color: var(--white-color);
+    border-right: right 1px solid var(--light-color);
+    padding: 30px 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column; 
+
+    z-index: 1001;
+    width: 60px;
+    transform: translateX(-60px);
+    transition: transform .3s .1s;
+}
+.menu-visible header { 
+    transform: translateX(0);
+    transition-delay: .2s;
+   
+}
+header a {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header .logo a {
+    background-color: #081b29;
+    color: var(--primary-color);
+    font-size: 30px;
+    border-radius: 50%;
+}
+.has-hover a {
+    position: relative;
+}
+.has-hover a::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color:#081b29;
+
+    box-shadow: 0 0 0 10px var(--primary-04-color);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.has-hover a:hover::before {
+    opacity: 1;
+    animation: blinkprimary 1s infinite;
+}
+@keyframes blinkprimary {
+    50% {box-shadow: 0 0 0 0 var(--primary-04-color);}
+}
+header .socials a:hover {
+    color: var(--primary-color);
+   
+}
+.container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+main nav {
+    height: 100px;
+}
+main nav :where(.container, ul) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+}
+main nav .menu a {
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    transition: color .3s;
+}
+main nav .menu a:hover {
+    color: var(--dark-color);
+}
+main nav .daynight input {
+    position: absolute;
+    height: 0;
+
+}
+main nav .daynight label {
+    display: flex;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    box-shadow: 0 0 0 4px var(--dark-04-color);
+    cursor: pointer;
+}
+main nav :where(.menu-trigger, .daynight label) {
+    font-size: 24px;
+    color: var(--dark-color);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color .3s, color .3s, box-shadow .3s;
+}
+main nav :is(.menu-trigger, .daynight label):hover {
+    background-color:#081b29;
+    color: var(--primary-color);
+    box-shadow: 0 0 0 4px var(--primary-04-color);
+    animation: blinkdark 1s infinite;
+}
+
+@keyframes blinkdark {
+    50% {box-shadow: 0 0 0 0 var(--dark-04-color);}
+}
+main nav .daynight label .light, main nav .daynight input:checked ~ label .dark {
+    display: none;
+
+}
+main nav .daynight input:checked ~ label .light {
+    display: block;
+}
+
+
+main nav .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+    background-color:var(--primary-color);
+    font-size: 24px;
+    padding-left: 60px;
+    transform: translateX(-100%);
+    transition: transform .3s .1s;
+    z-index: 1;
+}
+main nav .menu.show {
+    transform: translateX(0);
+}
+main nav .menu ul {
+    flex-direction: column; 
+    justify-content: center;
+    gap: 30px;
+
+}
+/*-----------------------------
+ * 1. Hero
+ -----------------------------*/
+ .hero {
+    position: relative;
+    overflow: hidden;
+ }
+.hero .wrapper {
+    position: relative;
+    min-height: calc(100vh - 100px);
+}
+.hero .wrapper .image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    transform: translateX(30%);
+}
+.hero .wrapper .image img{
+    max-width: 600px;
+}
+.hero .text {
+    width: fit-content;
+    padding-top: 10%;
+    min-height: 850px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hero .text > * {
+    padding-right: 30%;
+}
+.hero .text h1 span {
+    font-size: 32px;
+    font-weight: 600;
+
+}
+.hero .text-top h1 strong {
+    font-size: clamp(40px, 5.5vw, 2.5em);
+    font-weight: 800;
+}
+.hero .text-top p, .hero .text-bottom ul li a  {
+    color: var(--grey-color);
+}
+.button {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 50px;
+    padding: 0 36px;
+    margin-top: 46px;
+    font-weight: 14px;
+    text-transform: uppercase;
+    background-color: var(--primary-color);
+    color: var(--pure-white);
+    border-radius: 25px;
+    box-shadow: 0 0 0 4px var(--primary-04-color);
+}
+.button:hover {
+    animation: blinkprimary 1s infinite;
+}
+.hero .text-bottom ul {
+    padding: 0 0 30px 30px;
+}
+.hero .text-bottom ul li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+.hero .text-bottom ul li a {
+    position: relative;
+
+}
+.hero .text-bottom ul li a::before{
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: -22px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--light-color);
+    border-radius: 50%;
+    transition: background-color .3s;
+}
+.hero .text-bottom ul li a:hover::before {
+    background-color: var(--primary-color);
+    box-shadow: 0 0 0 4px var(--primary-04-color);
+    animation: blinkprimary .5s infinite;
+}
+
+/*-----------------------------
+ * 2. Meus Serviços
+-----------------------------*/
+.service {
+    background-color: var(--light-color);
+}
+main > div:not(.hero) {
+    padding: 100px 0;
+    overflow: hidden;
+}
+main > div .head {
+    margin-bottom: 60px;
+}
+main > div .head h2 {
+    font-size: clamp(36px, 4.5vw, 3em);
+}
+main .wrapper.center {
+    text-align: center;
+}
+main > div:not(.hero .testimonials) ul {
+    display: grid;
+    grid-gap: 46px;
+}
+main .wrapper.center .head p {
+    margin: 16px auto 0;
+}
+main .wrapper .head p {
+    max-width: 400px;
+    color: var(--grey-color);
+    margin-top: 16px;
+
+}
+.service ul {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.service ul li {
+    position: relative;
+    padding: 48px 32px 32px;
+    margin-top: 32px;
+    background-color: var(--white-color);
+    border-radius: 20px;
+    transition: background-color .3s, color .3s, box-shadow .3s;
+}
+.service ul li:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    box-shadow: rgb(0 0 0 / 30%) 0 30px 60px -10px;
+
+}
+.service ul li i {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px var(--dark-color), 
+                0 0 0 15px var(--light-color);
+}
+.service ul li h3 {
+    font-size: 18px;
+    margin: 16px;
+}
+.service ul li p {
+    font-size: 14px;
+    color: var(--grey-color);
+    transition: color .3s;   
+}
+.service ul li:hover p {
+    color: var(--dark-color);
+
+}
+
+
+/*-----------------------------
+ * 3. Habilidades
+-----------------------------*/
+.skills ul {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    max-width: 950px;
+    margin: auto;
+
+}
+.skills li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    
+
+}
+.skills li :where(.circle, svg) {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    z-index: 10;
+}
+.skills li svg circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+    transform: translate(5px,5px);
+    stroke-dasharray: 440;
+   
+}
+.skills li .animate.this svg circle {
+    animation: fillline 2s linear forwards ;
+}
+@keyframes fillline {
+    from{stroke-dashoffset: 440 ;}
+}
+.skills li .circle svg {
+    transform: rotate(270deg);
+}
+.skills li.css svg circle {
+    stroke-dashoffset: calc(440 - (440 * var(--csspercent)) / 100);
+}
+.skills li.js svg circle {
+    stroke-dashoffset: calc(440 - (440 * var(--jspercent)) / 100);
+}
+.skills li.vue svg circle {
+    stroke-dashoffset: calc(440 - (440 * var(--vuepercent)) / 100);
+}
+.skills li.react svg circle {
+    stroke-dashoffset: calc(440 - (440 * var(--reactpercent)) / 100);
+}
+.skills li.flutter svg circle {
+    stroke-dashoffset: calc(440 - (440 * var(--flutterpercent)) / 100);
+}
+.skills li .circle .inside {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    top: 20px;
+    left: 20px;
+    background-color: var(--light-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.skills li .circle .inside::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid  var(--light-color);
+    border-radius: 50%;
+    transform: scale(1.28);
+    z-index: -1;
+
+}
+.skills li .circle .inside span {
+    font-size: 24px;
+    color: var(--grey-color);
+    opacity: 0;
+    transform: scale(0.2) translateY(50px);
+}
+.skills li  .circle .inside span {
+    animation: showup 1s 1s forwards;
+}
+@keyframes showup {
+    to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+}
+.skills li .circle .dot {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 1;
+}
+.skills ul li .animate.this .inside .dot {
+    animation: dot 2s linear forwards;
+}
+@keyframes dot {
+    from {
+        transform: rotate(0);
+        opacity: 0;
+    }
+}
+.skills li .circle .dot::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.skills li.css .circle .dot {
+    transform: rotate(calc(3.6deg *  var(--csspercent)));
+}
+.skills li.js .circle .dot {
+    transform: rotate(calc(3.6deg *  var(--jspercent)));
+}
+.skills li.vue .circle .dot {
+    transform: rotate(calc(3.6deg *  var(--vuepercent)));
+}.skills li.react .circle .dot {
+    transform: rotate(calc(3.6deg *  var(--reactpercent)));
+}
+.skills li.flutter .circle .dot {
+    transform: rotate(calc(3.6deg *  var(--flutterpercent)));
+}
+.skills li.css .circle .dot::before {
+    background-color: var(--csscor);
+    box-shadow: 0 0 10px var(--csscor);
+
+}
+.skills li.js .circle .dot::before {
+    background-color: var(--jscor);
+    box-shadow: 0 0 10px var(--jscor);
+
+}
+.skills li.vue .circle .dot::before {
+    background-color: var(--vuecor);
+    box-shadow: 0 0 10px var(--vuecor);
+
+}
+.skills li.react .circle .dot::before {
+    background-color: var(--reactcor);
+    box-shadow: 0 0 10px var(--reactcor);
+
+}
+.skills li.flutter .circle .dot::before {
+    background-color: var(--fluttercor);
+    box-shadow: 0 0 10px var(--fluttercor);
+}
+.skills li h4 {
+    font-weight: 600;
+    color: var(--grey-color);
+}
+
+/*-----------------------------
+ * 4. Últimos Trabalhos 
+-----------------------------*/
+.latest-work ul {
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+}
+:where(.latest-work, .portfolio) ul li .thumbnail {
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+:where(.latest-work, .portfolio) ul li .thumbnail img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform .3s;
+}
+.latest-work ul li:hover .thumbnail img {
+    transform: scale(1.1);
+}
+.latest-work ul li h3 {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 16px 0 0 16px;
+    color: var(--grey-color);
+}
+
+
+
+/*-----------------------------
+ * 5. Portifólio 
+-----------------------------*/
+.portfolio ul {
+    grid-template-columns: repeat(auto-fit, minmax(249px 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(249px, 1fr);
+    overflow-x: auto;
+}
+.portfolio ul li .thumbnail {
+    position: relative;
+    height: 300px;
+}
+.portfolio ul li .thumbnail img {
+    object-position: left;
+    transition: object-position 1s;
+}
+.portfolio ul li:hover .thumbnail img {
+    object-position: right;
+}
+.portfolio ul li .thumbnail .link {
+    position: absolute;
+    top: 50%;
+    right: -13px;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--pure-white);
+    transform: translate(100%, -50%);
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    transition: transform .3s;
+
+}
+.portfolio ul li:hover .thumbnail .link {
+    transform: translate(0, -50%);
+    transition: transform .3s .3s;
+}
+.portfolio ul li .thumbnail .link:hover {
+    box-shadow: 0 0 0 10px var(--primary-04-color);
+    animation: blinkprimary 1s infinite;
+}
+.portfolio ul li.has-hover {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, var(--light-color), transparent);
+    border-radius: 20px;
+}
+.portfolio ul li.has-hover a {
+    font-size: 28px;
+    font-weight: 600;
+    margin-left: 32px;
+    z-index: 1;
+}
+.portfolio ul li.has-hover a::before {
+    width: 32px;
+    height: 32px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+
+
+
+/*-----------------------------
+ * 6. Testemunhas
+-----------------------------*/
+.testimonials .wrapper {
+    max-width: 650px;
+    margin: auto;
+}
+.testimonials ul li p {
+    position: relative;
+    padding: 32px;
+    background-color: var(--primary-color);
+    color: var(--pure-white);
+    border-radius: 20px;
+}
+.testimonials ul li p::before, .testimonials ul li p::after {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    line-height: 1;
+    color: var(--white-color);
+    font-size: 100px;
+    font-weight: 800;
+    font-family: serif;
+}
+.testimonials ul li p::before {
+    content: open-quote;
+    top: -20px;
+    left: 32px;
+
+}
+.testimonials ul li p::after {
+    content: close-quote;
+    bottom: -10px;
+    right: 32px;   
+}
+.testimonials ul li .thumbnail {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    box-shadow: 0 0 0 2px var(--primary-color);
+    overflow: hidden;
+}
+.testimonials ul li .thumbnail img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.testimonials ul li .dot {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: inline-block;
+    margin: 24px 0;
+    box-shadow: 0 14px 0 -4px var(--primary-color);
+}
+.testimonials ul li .person span {
+    color: var(--grey-color);
+
+}
+.testimonials .swiper-pagination {
+    position: relative;
+    margin-top: 16px;
+}
+.testimonials .swiper-pagination-bullet {
+    background-color: var(--grey-color);
+}
+.testimonials .swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+}
+
+
+/*-----------------------------
+ * 7. Contato
+-----------------------------*/
+.contact {
+    position: relative;
+    background: url('assets/contact-bg.jpg') center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2f3542;
+    opacity: .95;
+}
+.contact .wrapper {
+    position: relative;
+    max-width: 950px;
+    margin: auto;
+    display: grid;
+    gap: 46px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    color: var(--pure-white);
+}
+.contact form p {
+    margin-bottom: 24px;
+}
+.contact form label {
+    display: block;
+    color: var(--pure-white);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.contact form :where(input, textarea) {
+    font-family: 'Inter';
+    font-size: 14px;
+    outline: 0;
+    padding: 16px;
+    color: var(--pure-white);
+    background-color: transparent;
+    border: 1px solid var(--grey-color);
+    border-radius: 25px;
+}
+.contact form input {
+    width: 75%;
+    height: 46px;
+}
+.contact form :where(input, textarea):focus, .contact form :where(input, textarea):not(:placeholder-shown):not(:focus) {
+    border-color: var(--primary-color);
+}
+.contact form :where(input, textarea)::placeholder, .contact ul li p {
+    color: var(--grey-color);
+}
+.contact form textarea {
+    width: 100%;
+}
+.contact form button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+.contact .text-right {
+    margin-top: 115px;
+}
+.contact ul li span {
+    text-transform: uppercase;
+}
+
+/*-----------------------------
+ * 8. Footer
+-----------------------------*/
+footer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+}
+
+
+
+
+/*------------------------------
+ * 9. Animação ao fazer o scroll
+
+------------------------------*/
+/*
+.animate > * {
+    opacity: 0;
+    transition: opacity 1s .3s, transform .5s .3s;
+}
+.up.animate > * {
+    transform: translate(0, -50%);
+}
+.down.animate > * {
+    transform: translate(0, 50%);
+}
+.left.animate > * {
+    transform: translate(-50%, 0%);
+}
+.right.animate > * {
+    transform: translate(50%, 0);
+}
+.animate.this > * {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.animate.this > *:nth-child(1) {
+    transition-delay: 2s;
+
+}
+.animate.this > *:nth-child(2) {
+    transition-delay: 4s;
+    
+}
+.animate.this > *:nth-child(3) {
+    transition-delay: 6s;
+    
+}
+.animate.this > *:nth-child(4) {
+    transition-delay: 8s;
+    
+}
+.animate.this > *:nth-child(5) {
+    transition-delay: 9s;
+    
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 768px) {
+    header {
+        width: 80px;
+    }
+    .site > .wrapper {
+        padding-left: 80px;
+    }
+    .container {
+        padding: 0 64px;
+    }
+    .mobile-only {
+        display: none;
+    }
+    header, main nav .menu {
+        transform: none;
+    }
+    main nav .menu {
+        position: relative;
+        padding: 0;
+        width: 100%;
+        background-color: transparent;
+        font-size: inherit;
+    }
+    main nav .menu ul {
+        flex-direction: row;
+        justify-content: unset;
+        gap: 46px;
+    }
+    main nav .menu ul li a {
+        color: inherit;
+        font-weight: 600;
+    }
+    .portfolio ul {
+        grid-auto-flow: row;
+        grid-auto-columns: inherit;
+        overflow-x: unset;
+    }
+}
+
+
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+    .hero .wrapper .image {
+        transform: none;
+    }
+    .hero .text > * {
+        padding: 0;
+
+    }
+    .portfolio ul {
+        grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+    }
+}
