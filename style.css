@@ -11,15 +11,17 @@
 
     --csspercent:95;
     --jspercent:90;
-    --vuepercent:85;
     --reactpercent:80;
+    --vuepercent:85;
+    --angularpercent:75;
     --flutterpercent:89;
 
-    --csscor: #00a0e4;
-    --jscor:#F7971E;
-    --reactcor:#61DBFB;
-    --vuecor:#cdcece;
-    --fluttercor:#54c5fb;
+    --csscolor: #00a0e4;
+    --jscolor:#F7971E;
+    --reactcolor:#61DBFB;
+    --vuecolor:#00BC9B;
+    --angularcolor:#DD0031;
+    --fluttercolor:#54c1f8;
 
 }
 [data-theme="dark"] {
@@ -428,6 +430,7 @@ main .wrapper .head p {
     stroke-linecap: round;
     transform: translate(5px,5px);
     stroke-dasharray: 440;
+    
    
 }
 .skills li .animate.this svg circle {
@@ -447,6 +450,9 @@ main .wrapper .head p {
 }
 .skills li.vue svg circle {
     stroke-dashoffset: calc(440 - (440 * var(--vuepercent)) / 100);
+}
+.skills li.angular svg circle {
+    stroke-dashoffset: calc(440 - (440 * var(--angularpercent)) / 100);
 }
 .skills li.react svg circle {
     stroke-dashoffset: calc(440 - (440 * var(--reactpercent)) / 100);
@@ -485,7 +491,7 @@ main .wrapper .head p {
     opacity: 0;
     transform: scale(0.2) translateY(50px);
 }
-.skills li  .circle .inside span {
+.skills li .circle .inside span {
     animation: showup 1s 1s forwards;
 }
 @keyframes showup {
@@ -528,35 +534,40 @@ main .wrapper .head p {
 }
 .skills li.vue .circle .dot {
     transform: rotate(calc(3.6deg *  var(--vuepercent)));
-}.skills li.react .circle .dot {
+}
+.skills li.angular .circle .dot {
+    transform: rotate(calc(3.6deg *  var(--angularpercent)));
+}
+.skills li.react .circle .dot {
     transform: rotate(calc(3.6deg *  var(--reactpercent)));
 }
 .skills li.flutter .circle .dot {
     transform: rotate(calc(3.6deg *  var(--flutterpercent)));
 }
 .skills li.css .circle .dot::before {
-    background-color: var(--csscor);
-    box-shadow: 0 0 10px var(--csscor);
+    background-color: var(--csscolor);
+    box-shadow: 0 0 10px var(--csscolor);
 
 }
 .skills li.js .circle .dot::before {
-    background-color: var(--jscor);
-    box-shadow: 0 0 10px var(--jscor);
-
+    background-color: var(--jscolor);
+    box-shadow: 0 0 10px var(--jscolor);
 }
 .skills li.vue .circle .dot::before {
-    background-color: var(--vuecor);
-    box-shadow: 0 0 10px var(--vuecor);
-
+    background-color: var(--vuecolor);
+    box-shadow: 0 0 10px var(--vuecolor);
+}
+.skills li.angular .circle .dot::before {
+    background-color: var(--angularcolor);
+    box-shadow: 0 0 10px var(--angularcolor);
 }
 .skills li.react .circle .dot::before {
-    background-color: var(--reactcor);
-    box-shadow: 0 0 10px var(--reactcor);
-
+    background-color: var(--reactcolor);
+    box-shadow: 0 0 10px var(--reactcolor);
 }
 .skills li.flutter .circle .dot::before {
-    background-color: var(--fluttercor);
-    box-shadow: 0 0 10px var(--fluttercor);
+    background-color: var(--fluttercolor);
+    box-shadow: 0 0 10px var(--fluttercolor);
 }
 .skills li h4 {
     font-weight: 600;
