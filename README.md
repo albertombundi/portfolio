@@ -48,8 +48,8 @@ Você pode acessar o portfólio online através do seguinte link:
 
 📞 Contato <br>
 Email: [albertombundi@gmail.com](mailto:albertombundi@gmail.com) <br>
-LinkedIn: [Alberto Soneha Mbundi](https://linkedin.com/in/albertombundi) <br>
-GitHub: [albertosoneha](https://github.com/albertombundi) <br>
+LinkedIn: [Alberto Mbundi](https://linkedin.com/in/albertombundi) <br>
+GitHub: [albertombundi](https://github.com/albertombundi) <br>
 📜 Licença
 Este projeto está licenciado sob a MIT License.
 
